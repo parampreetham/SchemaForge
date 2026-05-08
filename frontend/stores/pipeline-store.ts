@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { apiClient } from "@/services/api-client";
+import { pipelineService } from "@/services/pipeline-service";
 
 interface PipelineState {
   activePipelineId: string | null;
@@ -27,15 +27,20 @@ export const usePipelineStore = create<PipelineState>((set, get) => ({
     if (!activePipelineId) return;
 
     try {
-      // In a real implementation, this would hit the FastAPI backend
-      // const response = await apiClient.get(`/pipelines/${activePipelineId}`);
-      // set({ progress: response.data.progress, status: response.data.status, chunks: response.data.chunks });
+      // Connect to the real backend
+      const pipeline = await pipelineService.getPipeline(activePipelineId);
+      const chunkData = await pipelineService.getPipelineChunks(activePipelineId);
       
-      // For MVP UI mock
-      set((state) => ({
-        progress: Math.min(state.progress + 5, 100),
-        status: state.progress >= 95 ? "completed" : "running"
-      }));
+      let newProgress = 0;
+      if (pipeline.total_chunks > 0) {
+        newProgress = Math.round((pipeline.completed_chunks / pipeline.total_chunks) * 100);
+      }
+
+      set({ 
+        progress: newProgress, 
+        status: pipeline.status, 
+        chunks: chunkData.items || [] 
+      });
     } catch (error) {
       console.error("Failed to fetch pipeline status", error);
     }
@@ -43,9 +48,12 @@ export const usePipelineStore = create<PipelineState>((set, get) => ({
 
   startPolling: () => {
     if (pollingInterval) clearInterval(pollingInterval);
+    // Initial fetch
+    get().fetchPipelineStatus();
+    // Poll every 3 seconds
     pollingInterval = setInterval(() => {
       get().fetchPipelineStatus();
-    }, 3000); // Poll every 3 seconds for MVP
+    }, 3000);
   },
 
   stopPolling: () => {
