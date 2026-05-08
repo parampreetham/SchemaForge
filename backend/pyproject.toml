@@ -23,6 +23,7 @@ dependencies = [
     "sqlglot>=25.0.0",
     "networkx>=3.0.0",
     "litellm>=1.0.0",
+    "pyodbc>=5.0.0",
 ]
 
 [project.optional-dependencies]
