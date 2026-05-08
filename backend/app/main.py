@@ -10,6 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.middleware.correlation import CorrelationMiddleware
 from app.api.middleware.error_handler import global_exception_handler
+from app.api.routes.auth import router as auth_router
 from app.api.routes.health import router as health_router
 from app.core import settings
 from app.core.logging import get_logger, setup_logging
@@ -60,6 +61,7 @@ def create_app() -> FastAPI:
 
     # Routes
     app.include_router(health_router, prefix="/api/v1")
+    app.include_router(auth_router, prefix="/api/v1")
 
     return app
 
