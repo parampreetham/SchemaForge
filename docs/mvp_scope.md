@@ -79,7 +79,6 @@ The MVP delivers a **fully functional desktop migration tool** that can take a D
 | Fine-tuned AI models | Requires training infrastructure | v3.0 |
 | Multi-database support | Oracle, PostgreSQL, MySQL sources | v3.0 |
 | Advanced semantic testing | Data-driven validation | v2.0 |
-| Dark mode | Nice-to-have UI enhancement | v1.5 |
 | Keyboard shortcuts | Power user feature | v1.5 |
 | WebSocket real-time updates | Polling sufficient for MVP | v2.0 |
 | Export reports (PDF/CSV) | Dashboard sufficient for MVP | v1.5 |

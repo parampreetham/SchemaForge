@@ -17,10 +17,10 @@
 | ORM | SQLAlchemy | 2.x | Async support, flexible query building, repository pattern friendly |
 | Migrations | Alembic | 1.13+ | First-class SQLAlchemy integration, auto-generation of diffs |
 | SQL Parser | sqlglot | 25+ | Multi-dialect AST parsing, DB2 support, pure Python |
-| AI SDK | OpenAI + Anthropic | Latest | Multi-provider flexibility, structured output support |
+| AI SDK | litellm (OpenAI/Anthropic) | Latest | Universal abstraction layer for multiple AI providers |
 | Auth | PyJWT + bcrypt | Latest | Stateless JWT tokens, industry-standard password hashing |
 | Logging | structlog | 24+ | Structured JSON output, processor pipeline, correlation IDs |
-| Validation Target | SQL Server / Azure SQL | 2019+ | Target deployment platform for generated SQL |
+| Validation Target | pyodbc (SQL Server / Azure SQL) | 2019+ | Target deployment platform for generated SQL validation |
 | Testing (Backend) | pytest + pytest-asyncio | Latest | Async test support, fixtures, parametrize |
 | Testing (Frontend) | Vitest + Testing Library | Latest | Fast, Vite-native, component testing |
 | Containerization | Docker + Compose | Latest | Local dev environment, future Linux deployment |
