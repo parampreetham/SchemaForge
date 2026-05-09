@@ -9,13 +9,15 @@ import {
   TerminalSquare, 
   Settings,
   Database,
-  LogOut
+  LogOut,
+  PlusCircle
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/stores/auth-store";
 
 const routes = [
   { label: "Dashboard", icon: LayoutDashboard, href: "/dashboard" },
+  { label: "New Pipeline", icon: PlusCircle, href: "/pipelines/new" },
   { label: "Projects", icon: FolderOpen, href: "/projects" },
   { label: "Pipelines", icon: Activity, href: "/pipelines" },
   { label: "Logs", icon: TerminalSquare, href: "/logs" },

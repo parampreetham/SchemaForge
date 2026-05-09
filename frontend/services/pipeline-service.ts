@@ -18,6 +18,18 @@ export const pipelineService = {
     return response.data;
   },
 
+  uploadSchema: async (file: File) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    
+    const response = await apiClient.post(`/pipelines/upload`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  },
+
   startPipeline: async (id: string) => {
     const response = await apiClient.post(`/pipelines/${id}/start`);
     return response.data;
